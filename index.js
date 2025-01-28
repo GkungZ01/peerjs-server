@@ -1,14 +1,10 @@
-import { PeerServer } from "peer";
-import express from "express";
+import { PeerServer } from 'peer';
+import cors from 'cors';
 
-const app = express();
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // Allow all origins
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+const peerServer = PeerServer({
+  port: 9000,
+  key: "hoshizora",
+  allowCORS: true, // Enable CORS
 });
 
-const peerServer = PeerServer({ port: 9000, path: "/myapp" });
-app.use(peerServer);
-
-console.log("PeerJS server running on port 9000");
+console.log('PeerJS server running on port 9000');
